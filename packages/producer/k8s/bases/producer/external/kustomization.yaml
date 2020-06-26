@@ -4,10 +4,4 @@ kind: Kustomization
 namespace: default
 
 resources:
-  - ./deployment.yaml
   - ./service.yaml
-
-configMapGenerator:
-  - name: kafka-producer-service-config
-    files:
-      - .env

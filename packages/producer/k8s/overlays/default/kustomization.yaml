@@ -1,8 +1,8 @@
-commonLabels:
-  profile: default
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 
 namespace: default
 
 bases:
   - ../../bases/producer
-  - ../../bases/producer/service-external.yaml
+  - ../../bases/producer/external

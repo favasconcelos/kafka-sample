@@ -7,7 +7,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      service: kafka-consumer
+      app: kafka-consumer
   template:
     metadata:
       labels:
@@ -29,5 +29,5 @@ spec:
               subPath: .env
       volumes:
         - configMap:
-            name: kafka-kafka-consumer-service-config
+            name: kafka-consumer-service-config
           name: config

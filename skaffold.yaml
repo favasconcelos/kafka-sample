@@ -1,5 +1,7 @@
 apiVersion: skaffold/v2beta5
 kind: Config
+metadata:
+  name: sample-kafka-project
 build:
   artifacts:
     - image: kafka-consumer
@@ -8,4 +10,5 @@ build:
       context: ./packages/producer
 deploy:
   kustomize:
-    path: ./k8s/overlays/default
+    paths:
+      - ./k8s/overlays/default

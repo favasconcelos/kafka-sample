@@ -7,7 +7,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      service: kafka-producer
+      app: kafka-producer
   template:
     metadata:
       labels:
@@ -31,5 +31,5 @@ spec:
               subPath: .env
       volumes:
         - configMap:
-            name: kafka-kafka-producer-service-config
+            name: kafka-producer-service-config
           name: config

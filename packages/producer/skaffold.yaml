@@ -6,4 +6,5 @@ build:
       context: .
 deploy:
   kustomize:
-    path: ./k8s/overlays/default
+    paths:
+      - ./k8s/overlays/default

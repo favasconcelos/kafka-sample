@@ -1,0 +1,8 @@
+commonLabels:
+  profile: default
+
+namespace: default
+
+bases:
+  - ../../bases/producer
+  - ../../bases/producer/service-external.yaml

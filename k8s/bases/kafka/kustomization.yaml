@@ -1,0 +1,12 @@
+resources:
+  - ./deployment.yaml
+  - ./service.yaml
+
+configMapGenerator:
+  - name: kafka-config
+    literals:
+      - KAFKA_ADVERTISED_PORT="9092"
+      - KAFKA_ADVERTISED_HOST_NAME="kafka-service"
+      - KAFKA_ZOOKEEPER_CONNECT="zookeeper-service:2181"
+      - KAFKA_BROKER_ID="0"
+      - KAFKA_CREATE_TOPICS="todo:1:1"

@@ -1,0 +1,7 @@
+commonLabels:
+  profile: default
+
+namespace: default
+
+bases:
+  - ../../bases/consumer

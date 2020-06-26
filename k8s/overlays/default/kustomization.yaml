@@ -1,0 +1,11 @@
+commonLabels:
+  profile: default
+
+namespace: default
+
+bases:
+  - ../../bases/kafka
+  - ../../bases/zookeeper
+  - ../../bases/kafkacat
+  - ../../../packages/consumer/k8s/overlays/default
+  - ../../../packages/producer/k8s/overlays/default

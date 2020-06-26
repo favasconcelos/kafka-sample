@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kafkacat
+  name: kafkacat-deployment
+spec:
+  selector:
+    matchLabels:
+      service: kafkacat
+  template:
+    metadata:
+      labels:
+        app: kafkacat
+    spec:
+      containers:
+        - args:
+            - "-c"
+            - "trap : TERM INT; sleep infinity & wait"
+          command:
+            - /bin/sh
+          image: "confluentinc/cp-kafkacat:5.5.0"
+          name: kafkacat
+          resources:
+            limits:
+              cpu: 780m
+              memory: 780Mi
+            requests:
+              cpu: 600m
+              memory: 600Mi

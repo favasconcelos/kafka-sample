@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kafka
+  name: kafka-deployment
+spec:
+  selector:
+    matchLabels:
+      service: kafka
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+        - envFrom:
+            - configMapRef:
+                name: kafka-config
+          image: "wurstmeister/kafka:2.12-2.5.0"
+          name: kafka
+          ports:
+            - containerPort: 9092
+          resources:
+            limits:
+              cpu: 780m
+              memory: 780Mi
+            requests:
+              cpu: 600m
+              memory: 600Mi

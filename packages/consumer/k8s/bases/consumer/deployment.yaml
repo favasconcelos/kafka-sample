@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kafka-consumer
+  name: kafka-consumer-deployment
+spec:
+  selector:
+    matchLabels:
+      service: kafka-consumer
+  template:
+    metadata:
+      labels:
+        app: kafka-consumer
+    spec:
+      containers:
+        - image: kafka-consumer
+          name: kafka-consumer
+          resources:
+            limits:
+              cpu: 780m
+              memory: 780Mi
+            requests:
+              cpu: 600m
+              memory: 600Mi
+          volumeMounts:
+            - mountPath: /app/.env
+              name: config
+              subPath: .env
+      volumes:
+        - configMap:
+            name: kafka-kafka-consumer-service-config
+          name: config

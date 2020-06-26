@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: zookeeper
+  name: zookeeper-deployment
+spec:
+  selector:
+    matchLabels:
+      service: zookeeper
+  template:
+    metadata:
+      labels:
+        app: zookeeper
+    spec:
+      containers:
+        - image: "zookeeper:3.5.6"
+          name: zookeeper
+          ports:
+            - containerPort: 2181
+          resources:
+            limits:
+              cpu: 780m
+              memory: 780Mi
+            requests:
+              cpu: 600m
+              memory: 600Mi
+      restartPolicy: Always

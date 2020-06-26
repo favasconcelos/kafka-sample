@@ -1,0 +1,7 @@
+resources:
+  - ./deployment.yaml
+
+configMapGenerator:
+  - name: kafka-consumer-service-config
+    files:
+      - .env

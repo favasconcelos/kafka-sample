@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kafka-producer
+  name: kafka-producer-deployment
+spec:
+  selector:
+    matchLabels:
+      service: kafka-producer
+  template:
+    metadata:
+      labels:
+        app: kafka-producer
+    spec:
+      containers:
+        - image: kafka-producer
+          name: kafka-producer
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              cpu: 780m
+              memory: 780Mi
+            requests:
+              cpu: 600m
+              memory: 600Mi
+          volumeMounts:
+            - mountPath: /app/.env
+              name: config
+              subPath: .env
+      volumes:
+        - configMap:
+            name: kafka-kafka-producer-service-config
+          name: config

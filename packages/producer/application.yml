@@ -1,0 +1,4 @@
+kafka:
+  broker: 'kafka-service:9092'
+  topic: todo
+  clientId: todo-producer

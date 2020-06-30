@@ -35,7 +35,7 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
 
   public async send(value: any, key?: string) {
     const topic = this.topic;
-    const messages = [{ key, value }];
+    const messages = [{ key, value: JSON.stringify(value) }];
     return await this.producer.send({ topic, messages });
   }
 }

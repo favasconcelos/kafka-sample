@@ -9,5 +9,8 @@ resources:
 
 configMapGenerator:
   - name: kafka-producer-service-config
-    files:
-      - .env
+    literals:
+      - KAFKA_BROKER="kafka-service:9092"
+      - KAFKA_TOPIC="todo"
+      - KAFKA_CLIENT_ID="todo-producer"
+      - SERVER_PORT="3000"

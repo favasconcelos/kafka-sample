@@ -21,10 +21,3 @@ spec:
           name: kafka
           ports:
             - containerPort: 9092
-          resources:
-            limits:
-              cpu: 780m
-              memory: 780Mi
-            requests:
-              cpu: 600m
-              memory: 600Mi

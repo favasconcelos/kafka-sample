@@ -8,5 +8,7 @@ resources:
 
 configMapGenerator:
   - name: kafka-consumer-service-config
-    files:
-      - .env
+    literals:
+      - KAFKA_BROKER="kafka-service:9092"
+      - KAFKA_TOPIC="todo"
+      - KAFKA_CLIENT_ID="todo-consumer"

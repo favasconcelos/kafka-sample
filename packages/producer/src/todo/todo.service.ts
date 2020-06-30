@@ -1,12 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable, Logger, LoggerService } from '@nestjs/common';
 import { KafkaService } from 'src/kafka/kafka.service';
 import { CreateTodoDTO } from './create-todo.dto';
 
 @Injectable()
 export class TodoService {
-  constructor(private kafkaService: KafkaService) {}
+  constructor(@Inject(Logger) private readonly logger: LoggerService, private kafkaService: KafkaService) {}
 
   public async createTodo(body: CreateTodoDTO) {
-    return this.kafkaService.send(body);
+    const response = await this.kafkaService.send(body, 'todo.create');
+    this.logger.log(response);
+    return response;
   }
 }

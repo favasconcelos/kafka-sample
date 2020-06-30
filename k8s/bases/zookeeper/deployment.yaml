@@ -18,11 +18,4 @@ spec:
           name: zookeeper
           ports:
             - containerPort: 2181
-          resources:
-            limits:
-              cpu: 780m
-              memory: 780Mi
-            requests:
-              cpu: 600m
-              memory: 600Mi
       restartPolicy: Always

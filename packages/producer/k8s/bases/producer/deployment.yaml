@@ -14,7 +14,10 @@ spec:
         app: kafka-producer
     spec:
       containers:
-        - image: kafka-producer
+        - envFrom:
+            - configMapRef:
+                name: kafka-producer-service-config
+          image: kafka-producer
           name: kafka-producer
           ports:
             - containerPort: 3000
@@ -25,11 +28,11 @@ spec:
             requests:
               cpu: 600m
               memory: 600Mi
-          volumeMounts:
-            - mountPath: /app/.env
-              name: config
-              subPath: .env
-      volumes:
-        - configMap:
-            name: kafka-producer-service-config
-          name: config
+      initContainers:
+        - args:
+            - "-c"
+            - until nslookup kafka-service; do echo waiting for kafka-service; sleep 2; done
+          command:
+            - /bin/sh
+          image: "busybox:1.28"
+          name: init-kafka

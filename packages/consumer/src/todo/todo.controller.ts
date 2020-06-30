@@ -1,15 +1,14 @@
-import { Controller } from '@nestjs/common';
-import { Ctx, KafkaContext, MessagePattern, Payload } from '@nestjs/microservices';
-import { inspect } from 'util';
-import { TodoCreateDTO } from './todo-create.dto';
+import { Controller, Inject, Logger, LoggerService } from '@nestjs/common';
+import { MessagePattern, Payload } from '@nestjs/microservices';
 
 @Controller()
 export class TodoController {
-  @MessagePattern('todo.create')
-  public createTodo(@Payload() incomingMessage: TodoCreateDTO, @Ctx() context: KafkaContext) {
-    const topic = context.getTopic();
-    const message = context.getMessage();
-    console.log(inspect({ topic, message }));
-    console.log(inspect(incomingMessage));
+  constructor(@Inject(Logger) private readonly logger: LoggerService) {}
+
+  // TODO: Check if it's possible to auto convert the message to the correct type
+  @MessagePattern('todo')
+  public createTodo(@Payload() message: any) {
+    const { key, value } = message;
+    this.logger.log({ key, value });
   }
 }

@@ -12,3 +12,24 @@ deploy:
   kustomize:
     paths:
       - ./k8s/overlays/default
+
+profiles:
+  - name: consumer
+    build:
+      artifacts:
+        - image: kafka-consumer
+          context: ./packages/consumer
+    deploy:
+      kustomize:
+        paths:
+          - ./k8s/overlays/consumer
+
+  - name: producer
+    build:
+      artifacts:
+        - image: kafka-producer
+          context: ./packages/producer
+    deploy:
+      kustomize:
+        paths:
+          - ./k8s/overlays/producer
